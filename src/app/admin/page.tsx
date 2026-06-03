@@ -4,7 +4,7 @@ import { getSession } from '@/lib/session';
 import { prisma } from '@/lib/prisma';
 import { applyMonthlyDeduction, getRank } from '@/services/pointsCalculator';
 import { AdminPlayersTable } from './AdminPlayersTable';
-import { RankUpNav } from '@/components/RankUpNav';
+import { MainNav } from '@/components/MainNav';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,9 +52,10 @@ export default async function AdminPage() {
 
   return (
     <div className="min-h-screen">
-      <RankUpNav
+      <MainNav
+        username={session.username}
+        active="dashboard"
         prefix={<span className="text-gray-500">Admin</span>}
-        showLeaderboard={false}
       />
 
       <main className="max-w-6xl mx-auto p-6">

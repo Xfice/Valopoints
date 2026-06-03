@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getAllRanks } from '@/services/pointsCalculator';
 import { getSession } from '@/lib/session';
-import { RankUpNav } from '@/components/RankUpNav';
+import { MainNav } from '@/components/MainNav';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +13,7 @@ export default async function PrizesPage() {
 
   return (
     <div className="min-h-screen">
-      <RankUpNav showLeaderboard={false} auth="login-or-logout" isLoggedIn={session.isLoggedIn} />
+      <MainNav active="prizes" auth="login-or-logout" isLoggedIn={session.isLoggedIn} />
 
       <main className="max-w-4xl mx-auto p-6">
         <h1 className="text-2xl font-bold mb-4">Prizes & Ranks</h1>

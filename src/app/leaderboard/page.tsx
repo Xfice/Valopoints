@@ -1,10 +1,8 @@
-import Link from 'next/link';
-
 export const dynamic = 'force-dynamic';
 import { prisma } from '@/lib/prisma';
 import { applyMonthlyDeduction, getRank } from '@/services/pointsCalculator';
 import { getSession } from '@/lib/session';
-import { RankUpNav } from '@/components/RankUpNav';
+import { MainNav } from '@/components/MainNav';
 
 export default async function LeaderboardPage() {
   const session = await getSession();
@@ -28,7 +26,7 @@ export default async function LeaderboardPage() {
 
   return (
     <div className="min-h-screen">
-      <RankUpNav showLeaderboard={false} auth="login-or-logout" isLoggedIn={session.isLoggedIn} />
+      <MainNav active="leaderboard" auth="login-or-logout" isLoggedIn={session.isLoggedIn} />
 
       <main className="max-w-4xl mx-auto p-6">
         <h1 className="text-2xl font-bold mb-6">Leaderboard</h1>

@@ -7,7 +7,7 @@ import { prisma } from '@/lib/prisma';
 import { getMmr } from '@/services/valorantApi';
 import { applyMonthlyDeduction, getRank } from '@/services/pointsCalculator';
 import { DashboardClient } from './DashboardClient';
-import { RankUpNav } from '@/components/RankUpNav';
+import { MainNav } from '@/components/MainNav';
 
 export default async function DashboardPage() {
   const session = await getSession();
@@ -44,7 +44,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen">
-      <RankUpNav />
+      <MainNav username={session.username} active="dashboard" />
 
       <main className="max-w-6xl mx-auto p-6">
         <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
