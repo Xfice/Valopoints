@@ -71,9 +71,6 @@ Run `npm run db:seed` after schema changes to ensure demo users exist.
 Add your live URL to `SUBMISSION.md`.
 
 ## Submission artifacts
-
-- `ARCHITECTURE.md` — priorities and tradeoffs
-- `AI_WORKFLOW.md` — your AI usage note (edit before submit)
 - `SUBMISSION.md` — checklist for reviewers
 - `VIDEO_URL.txt` — walkthrough link
 
