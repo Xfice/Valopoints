@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getAllRanks } from '@/services/pointsCalculator';
 import { getSession } from '@/lib/session';
-import { LogoutButton } from '@/components/LogoutButton';
+import { RankUpNav } from '@/components/RankUpNav';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,16 +13,7 @@ export default async function PrizesPage() {
 
   return (
     <div className="min-h-screen">
-      <nav className="border-b-2 border-valo-red py-3 px-4" style={{ background: 'linear-gradient(180deg, var(--valo-dark) 0%, var(--valo-black) 100%)' }}>
-        <div className="flex justify-between items-center max-w-6xl mx-auto">
-          <Link href="/" className="font-bold text-valo-red">RankUp ValoPoints</Link>
-          <div className="flex gap-4">
-            <Link href="/dashboard" className="text-gray-300 hover:text-valo-red">Dashboard</Link>
-            <Link href="/prizes" className="text-gray-300 hover:text-valo-red">Prizes</Link>
-            {session.isLoggedIn ? <LogoutButton /> : <Link href="/login" className="text-gray-400 hover:text-white">Login</Link>}
-          </div>
-        </div>
-      </nav>
+      <RankUpNav showLeaderboard={false} auth="login-or-logout" isLoggedIn={session.isLoggedIn} />
 
       <main className="max-w-4xl mx-auto p-6">
         <h1 className="text-2xl font-bold mb-4">Prizes & Ranks</h1>

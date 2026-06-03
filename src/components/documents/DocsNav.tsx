@@ -16,6 +16,9 @@ export function DocsNav({ username }: Props) {
           <Link href="/documents" className="text-sm text-slate-300 hover:text-white">
             Documents
           </Link>
+          <Link href="/dashboard" className="text-sm text-slate-300 hover:text-white">
+            RankUp Dashboard
+          </Link>
         </div>
         <div className="flex items-center gap-4 text-sm">
           {username && <span className="text-slate-400">{username}</span>}

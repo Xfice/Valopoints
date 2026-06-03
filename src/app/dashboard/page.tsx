@@ -7,7 +7,7 @@ import { prisma } from '@/lib/prisma';
 import { getMmr } from '@/services/valorantApi';
 import { applyMonthlyDeduction, getRank } from '@/services/pointsCalculator';
 import { DashboardClient } from './DashboardClient';
-import { LogoutButton } from '@/components/LogoutButton';
+import { RankUpNav } from '@/components/RankUpNav';
 
 export default async function DashboardPage() {
   const session = await getSession();
@@ -44,17 +44,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen">
-      <nav className="border-b-2 border-valo-red py-3 px-4" style={{ background: 'linear-gradient(180deg, var(--valo-dark) 0%, var(--valo-black) 100%)' }}>
-        <div className="flex justify-between items-center max-w-6xl mx-auto">
-          <Link href="/" className="font-bold text-valo-red">RankUp ValoPoints</Link>
-          <div className="flex gap-4">
-            <Link href="/dashboard" className="text-gray-300 hover:text-white">Dashboard</Link>
-            <Link href="/leaderboard" className="text-gray-300 hover:text-white">Leaderboard</Link>
-            <Link href="/prizes" className="text-gray-300 hover:text-white">Prizes</Link>
-            <LogoutButton />
-          </div>
-        </div>
-      </nav>
+      <RankUpNav />
 
       <main className="max-w-6xl mx-auto p-6">
         <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
