@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --valo-red: #ff4655;
+  --valo-red-dark: #cc3643;
+  --valo-dark: #1a2332;
+  --valo-black: #0f1923;
+  --valo-panel: #252d3a;
+  --valo-border: #3a4556;
+}
+
+body {
+  background-color: var(--valo-black);
+}
+
+/* Home hero images - match .NET */
+.home-hero-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.home-hero-img {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.valorant-img-wrap {
+  display: inline-flex;
+  background: white;
+  padding: 0;
+  border-radius: 4px;
+  line-height: 0;
+}
+
+.valorant-img-wrap .valorant-img {
+  display: block;
+  mix-blend-mode: multiply;
+  filter: brightness(1.05) contrast(1.1);
+}
+
+@media (max-width: 991px) {
+  .home-hero-img {
+    max-height: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-hero-img {
+    max-height: 48px;
+  }
+}
+
+/* Point legend */
+.home-point-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+}
+
+/* Rank card - belt images */
+.rank-card {
+  background: #F5F0E8;
+  border-color: #e5e0d8;
+}
+
+.rank-card-kyu {
+  background: #fef9ef;
+  border-color: #ede0d0;
+}
+
+.rank-belt {
+  height: 72px;
+  width: auto;
+}
+
+.rank-belt-black {
+  height: 160px;
+  width: auto;
+}
+
+.belt-img-wrap {
+  background: #F5F0E8;
+  padding: 0.25rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.belt-img-offset {
+  margin-top: 0.85rem;
+}
+
+/* Valorant rank card */
+.valorant-rank-card {
+  background: #fff;
+  border-color: #dee2e6;
+}
+
+.valorant-rank-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Agent thumb in matches */
+.agent-thumb {
+  height: 32px;
+  width: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Belt thumbs for leaderboard/prizes */
+.belt-thumb {
+  height: 28px;
+  width: auto;
+}
+
+.belt-thumb-black {
+  height: 56px;
+  width: auto;
+}
+
+/* Total points - green pulse */
+.total-points-value {
+  color: #4ade80 !important;
+  font-weight: 800;
+  animation: total-points-pulse 2s ease-in-out infinite;
+}
+
+@keyframes total-points-pulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.4), 0 0 12px rgba(74, 222, 128, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.4), 0 0 20px rgba(74, 222, 128, 0.7);
+  }
+}
+
+.prize-value {
+  font-weight: 700;
+  animation: prize-led 3s ease-in-out infinite;
+}
+
+@keyframes prize-led {
+  0%, 100% { color: #fbbf24; }
+  25% { color: #4ade80; }
+  50% { color: #60a5fa; }
+  75% { color: #f472b6; }
+}
+
+/* Match badges */
+.badge-win-result {
+  background: #22c55e;
+  color: white;
+  font-weight: 700;
+  padding: 0.35em 0.6em;
+  letter-spacing: 0.05em;
+}
+
+.badge-loss-result {
+  background: var(--valo-red);
+  color: white;
+  font-weight: 700;
+  padding: 0.35em 0.6em;
+  letter-spacing: 0.05em;
+}
+
+.badge-mvp-result {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #1a1a1a;
+  font-weight: 700;
+  padding: 0.35em 0.6em;
+}
+
+.badge-team-mvp-result {
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+  color: #0f1923;
+  font-weight: 700;
+  padding: 0.35em 0.6em;
+}
+
+.badge-ace-result {
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  color: white;
+  font-weight: 700;
+  padding: 0.35em 0.6em;
+}
+
+/* Point legend (dashboard) - matches desktop .NET */
+.point-legend {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+}
+
+.point-legend .badge-win { color: #4ade80; font-weight: 700; }
+.point-legend .badge-loss { color: var(--valo-red); font-weight: 700; }
+.point-legend .badge-mvp { color: #fbbf24; font-weight: 700; }
+.point-legend .badge-team-mvp { color: #38bdf8; font-weight: 700; }
+.point-legend .badge-ace { color: #a78bfa; font-weight: 700; }
+
+.point-legend .separator {
+  color: var(--valo-border);
+  font-weight: 400;
+  user-select: none;
+}
+
+/* TipTap document editor */
+.ProseMirror {
+  outline: none;
+}
+.ProseMirror h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+}
+.ProseMirror h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0.65rem 0 0.4rem;
+}
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+.ProseMirror ul {
+  list-style: disc;
+}
+.ProseMirror ol {
+  list-style: decimal;
+}
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #64748b;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+

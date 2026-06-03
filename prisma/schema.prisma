@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String             @id @default(cuid())
+  username         String             @unique
+  email            String?            @unique
+  passwordHash     String?            @map("password_hash")
+  createdAt        DateTime           @default(now()) @map("created_at")
+  profile          UserProfile?
+  passwordResets   PasswordResetCode[]
+  ownedDocuments   Document[]         @relation("DocumentOwner")
+  sharedDocuments  DocumentShare[]
+}
+
+model PasswordResetCode {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code      String
+  expiresAt DateTime @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  @@index([userId])
+  @@index([code])
+}
+
+model UserProfile {
+  id        String   @id @default(cuid())
+  userId    String   @unique @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  riotName  String   @map("riot_name")
+  riotTag   String   @map("riot_tag")
+  puuid     String
+  region    String   @default("na")
+  platform  String   @default("pc")
+  linkedAt  DateTime @map("linked_at")
+}
+
+model PuuidFirstLinked {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  puuid         String
+  firstLinkedAt DateTime @map("first_linked_at")
+  @@unique([userId, puuid])
+}
+
+model MatchRecord {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  puuid         String
+  matchId       String   @map("match_id")
+  agent         String?
+  won           Boolean
+  kills         Int      @default(0)
+  deaths        Int      @default(0)
+  assists       Int      @default(0)
+  wasMvp        Boolean  @default(false) @map("was_mvp")
+  wasTeamMvp    Boolean  @default(false) @map("was_team_mvp")
+  aces          Int      @default(0)
+  pointsEarned  Float    @map("points_earned")
+  matchPlayedAt DateTime @map("match_played_at")
+  @@unique([userId, puuid, matchId])
+}
+
+model Document {
+  id        String          @id @default(cuid())
+  title     String          @default("Untitled document")
+  content   String          @default("{}")
+  ownerId   String          @map("owner_id")
+  owner     User            @relation("DocumentOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  shares    DocumentShare[]
+  createdAt DateTime        @default(now()) @map("created_at")
+  updatedAt DateTime        @updatedAt @map("updated_at")
+  @@index([ownerId])
+}
+
+model DocumentShare {
+  id         String   @id @default(cuid())
+  documentId String   @map("document_id")
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId     String   @map("user_id")
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now()) @map("created_at")
+  @@unique([documentId, userId])
+  @@index([userId])
+}

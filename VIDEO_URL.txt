@@ -1,0 +1,4 @@
+Replace this file's contents with your unlisted Loom or YouTube walkthrough URL before submission.
+
+Example:
+https://www.loom.com/share/your-video-id
